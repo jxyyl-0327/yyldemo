@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>小米账号-登录</title>
+    <base href="/">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="">
+
 </head>
+
 <body>
-<p>这是登录页面</p>
+    <div class="header">
+        <div class="header-center">
+            <a class="header-left" href="pages/index.html">
+                <img src="https://account.xiaomi.com/static/res/7f6f2f5/account-static/respassport/acc-2014/img/mistore_logo.png"
+                    alt="">
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="login">
+            <div class="main-top">
+                <div class="top-left">
+                    账号登录
+                </div>
+                <span class="dep">|</span>
+                <div class="top-right">
+                    扫码登录
+                </div>
+            </div>
+            <div class="main-center">
+                <form id="login" method="post" action="login.php">
+                    <input type="text" name="username" id=""  class="user">
+                    <input type="password" name="password" id=""  class="pas">
+                    <input type="button" name="" id="" value="登录" class="denglu">
+                </form>
+            </div>
+            <div class="sign-in">
+                <a href="pages/zhuce.html" class="sign-in-left">手机短信登录/注册</a>
+                <div class="sign-in-right">
+                    <a href="pages/zhuce.html">立即注册</a>
+                    <span>|</span>
+                    <a href="">忘记密码</a>
+                </div>
+            </div>
+            <div class="main-bottom">
+                <span class="line1"></span>
+                <p class="other">其他方式登录</p>
+                <span class="line2"></span>
+                <!-- <span></span>
+                <span></span>
+                <span></span>
+                <span></span> -->
+            </div>
+        </div>
+    </div>
+    <div class="bottom"></div>
+
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="../lib/jquery-validate/localization/messages_zh.js"></script>
+    <script>
+        $('#login').validate({
+            rules: {
+                username:{
+                    required:true,
+                },
+                password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 12,
+                }
+            },
+            messages: {
+                firstname:"请输入你的账号",
+                lastname:"请输入你的密码",
+                username: {
+                    required:"请输入你的账号"
+                },
+                password: {
+                    required: "请输入密码！",
+                }
+            },
+            submitHandler: function (form) {
+                $.ajax({
+                    url: '/login',
+                    type: 'post',
+                    data: {
+                        username: 'admin',
+                        password: '123456'
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        console.log(res)
+                    }
+                })
+            }
+        })
+    </script>
 </body>
+
 </html>

@@ -1,1 +1,105 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Document</title></head><body><p>这里是商城</p></body></html>
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Document</title><link rel=stylesheet href=../lib/pagination/pagination.css><link rel=stylesheet href=../css/list.css><link rel=stylesheet href=../lib/swiper/css/swiper.min.css></head><body><div class=top><div class=top-center><div class=swiper-container><div class=swiper-wrapper><div class=swiper-slide><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b1f75719df222491cd55ae4da697b17d.jpg?w=5120&h=1240&bg=F4F7FE" alt="" class=imgs></div><div class=swiper-slide><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e5c30dce68183fcdc66c62aa66f9598a.jpg?w=5120&h=1240&bg=F3F8FE" alt="" class=imgs></div></div><div class=swiper-pagination></div><div class="swiper-button-prev prev"></div><div class="swiper-button-next next"></div></div></div></div><div class=main><div class="pagi m-style"></div><button class=sort>按价格排序</button></div><div class=list><ul></ul></div><div class=bottom><div class=bottom-center><p>版权归小米公司所有</p></div></div><script src=../lib/jquery/dist/jquery.min.js></script><script src=../lib/pagination/pagination.js></script><script src=../lib/swiper/js/swiper.min.js></script><script>var flag = true
+        var list2 = []
+        // 轮播图
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'horizontal',
+            loop: true, // 循环模式选项
+            autoplay: {
+                delay: 2000
+            },
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        })
+        getList()
+
+        function getList() {
+            $.ajax({
+                url: '../lib/xiaomi.json',
+                dataType: 'json',
+                success: function (res) {
+                    $('.pagi').pagination({
+                        pageCount: Math.ceil(res.length / 12), // 总页数
+                        current: 1, // 当前页
+                        jump: true,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (api) { // 当你切换页面的时候会触发
+                            let curr = api.getCurrent() //获取当前页数
+                            var list = res.slice((curr - 1) * 12, curr * 12)
+                            bindHtml(list)
+                        }
+                    })
+                    bindHtml(res.slice(0, 12))
+                    list2 = res
+                }
+            })
+        }
+
+        function bindHtml(list) {
+            let str = ''
+            list.forEach(item => {
+
+                str += `
+                    <li data-id="${item.id}">
+                        <img src="${item.url}" alt=""></br>
+                        <p>${item.name}</p></br>
+                        <h6>${item.detail}</h6></br>
+                        <span>${item.price}</span>
+                    </li>`
+            })
+            $('.list>ul').html(str)
+        }
+        var btn = document.querySelector('.sort')
+        btn.onclick = function () {
+            flag = !flag
+            console.log(flag)
+            list2.sort(function (a, b) {
+                if (flag === true) {
+                    return a.price - b.price
+                } else {
+                    return b.price - a.price
+                }
+            })
+            $('.pagi').pagination({
+                pageCount: Math.ceil(list2.length / 12), // 总页数
+                current: 1, // 当前页
+                jump: true,
+                coping: true,
+                homePage: '首页',
+                endPage: '末页',
+                prevContent: '上页',
+                nextContent: '下页',
+                callback: function (api) { // 当你切换页面的时候会触发
+                    let curr = api.getCurrent() //获取当前页数
+                    var list = list2.slice((curr - 1) * 12, curr * 12)
+                    bindHtml(list)
+                }
+            })
+            bindHtml(list2.slice(0, 12))
+        }
+
+        $('.list>ul').on('click', 'li', function () {
+            const id = $(this).data('id')
+
+            let data = null
+
+            for (let i = 0; i < list2.length; i++) {
+                if (list2[i].id === id) {
+                    data = list2[i]
+                    break
+                }
+            }
+            localStorage.setItem('goods-info', JSON.stringify(data))
+            window.location.href = './detail.html'
+        })</script></body></html>

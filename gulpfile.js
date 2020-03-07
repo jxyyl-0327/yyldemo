@@ -79,6 +79,14 @@ const serverHandler = () => {
                     source: '/yyl', //代理标识符
                     target: 'http://127.0.0.1/test.php' //要代理的地址
                 },
+                {
+                    source: '/login', //代理标识符
+                    target: 'http://127.0.0.1/login.php' //要代理的地址
+                },
+                {
+                    source: '/zhuce', //代理标识符
+                    target: 'http://127.0.0.1/zhuce.php' //要代理的地址
+                }
             ]
         })) //开启服务器
 }

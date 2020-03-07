@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": " Redmi Note 8 Pro",
+        "detail": "6400万全场景四摄",
+        "price": 1299,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/bb368ee3086a10e733a138ce262aa43d.jpg"
+    },
+    {
+        "id": 2,
+        "name": " Redmi Note 8",
+        "detail": "千元4800万四摄",
+        "price": 999,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/465ea7594d174311d85ba9b58b4c7137.jpg"
+    },
+    {
+        "id": 3,
+        "name": "小米CC9",
+        "detail": "3200万自拍，4800万三摄",
+        "price": 1499,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/027867a38d4fd4d782b16118e4197985.jpg"
+    },
+    {
+        "id": 4,
+        "name": "小米CC9e ",
+        "detail": "3200万自拍，4800万三摄",
+        "price": 1299,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d894ae533bc28b59b172e3d46581cefd.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Redmi 7A ",
+        "detail": "小巧大电量 持久流畅",
+        "price": 579,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8f2ab52a8c96e5b9ae692576763d641c.jpg"
+    },
+    {
+        "id": 6,
+        "name": " Redmi Note 8 ",
+        "detail": "千元4800万四摄",
+        "price": 999,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/465ea7594d174311d85ba9b58b4c7137.jpg"
+    },
+    {
+        "id": 7,
+        "name": " 小米CC9 ",
+        "detail": "3200万自拍，4800万三摄",
+        "price": 1499,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/027867a38d4fd4d782b16118e4197985.jpg"
+    },
+    {
+        "id": 8,
+        "name": " 小米CC9e",
+        "detail": "3200万自拍，4800万三摄",
+        "price": 1299,
+        "url": "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d894ae533bc28b59b172e3d46581cefd.jpg"
+    }
+]

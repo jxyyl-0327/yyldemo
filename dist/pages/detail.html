@@ -1,1 +1,53 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Document</title></head><body><p>这里是详情页</p></body></html>
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Document</title><link rel=stylesheet href=../css/detail.css><link rel=stylesheet href=../css/jquery.exzoom.css></head><body><div class=detail><div class=detail-left><div class=exzoom id=exzoom><div class=exzoom_img_box><ul class=exzoom_img_ul><li><img src=https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg class=img></li><li><img src=https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg class=img></li><li><img src=https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg class=img></li><li><img src=https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg class=img></li><li><img src=https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg class=img></li></ul></div><div class=exzoom_nav></div><p class=exzoom_btn><a class=exzoom_prev_btn></a> <a class=exzoom_next_btn></a></p></div></div><div class=detail-right><p class=goodsName>商品名称</p><p class=goodsDetail>详细介绍</p><p class=price>100</p><div class=btn><button class=addCart>添加购物车</button> <button>直接购买</button></div></div></div><script src=../lib/jquery/dist/jquery.min.js></script><script src=../js/jquery.exzoom.js></script><script>$("#exzoom").exzoom();
+        defaults = {
+            "navWidth": 100, //列表每个宽度,该版本中请把宽高填写成一样
+            "navHeight":100, //列表每个高度,该版本中请把宽高填写成一样
+            "navItemNum": 3, //列表显示个数
+            "navItemMargin": 7, //列表间隔
+            "navBorder": 0, //列表边框，没有边框填写0，边框在css中修改
+            "autoPlay": true, //是否自动播放
+            "autoPlayTimeout": 3000, //播放间隔时间
+        };
+
+        const info = JSON.parse(localStorage.getItem('goods-info'))
+        // console.log(info)
+        if (!info) {
+            alert('请先点击你要查看的商品')
+            window.location.href = './list.html'
+        }
+
+        bindHtml()
+
+        function bindHtml() {
+            $('.exzoom_img_ul img').attr('src', info.url)
+            $('.detail-right .goodsName').text(info.name)
+            $('.detail-right .price').text('￥：' + info.price)
+            $('.detail-right .goodsDetail').text(info.detail)
+        }
+
+        $('.addCart').click(() => {
+            const cartList = JSON.parse(localStorage.getItem('cartList')) || []
+
+            let exits = cartList.some(item => {
+                return item.id === info.id
+            })
+
+            // console.log(cartList)
+            if (exits) {
+                let data = null
+                for (let i = 0; i < cartList.length; i++) {
+                    if (cartList[i].id === info.id) {
+                        data = cartList[i]
+                        break
+                    }
+                }
+                data.number++
+                data.xiaoji = data.number * data.price
+            } else {
+                info.number = 1
+                info.xiaoji = info.price
+                info.isSelect = false
+                cartList.push(info)
+            }
+            localStorage.setItem('cartList', JSON.stringify(cartList))
+        })</script></body></html>

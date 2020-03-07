@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.cart {
+    width: 1500px;
+    margin: 100px auto;
+    border: 1px solid #ff6709;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    border-bottom: 1px solid #ff6709;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+.header>input {
+    width: 40px;
+    height: 40px;
+    margin-left: 40px;
+}
+
+.header.p {
+    padding-left: 40px;
+}
+
+.center>li {
+    display: flex;
+    margin: 10px;
+    border: 1px solid #ff6709;
+}
+
+.select {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ff6709;
+}
+
+.select>input {
+    width: 30px;
+    height: 30px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+.info>img {
+    width: 200px;
+    height: 200px;
+    border:1px solid #ff6709;
+    display: block;
+    margin-right: 10px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+.number {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.number>button {
+    width: 30px;
+    height: 30px;
+}
+
+.number>input {
+    height: 30px;
+          border: none;
+          outline: none;
+          width: 100px;
+          text-align: center;
+          font-size: 20px;
+}
+
+.del {
+    margin-left: 50px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bottom {
+    height: 60px;
+    border-top: 1px solid #ff6709;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.bottom>p {
+    padding-left: 40px;
+}
+
+.bottom>button {
+    margin-right: 40px;
+    width: 200px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.pay {
+    background: skyblue;
+}
+.xiaoji{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    font-size: 30px;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="../css/zhuce.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="main-top">
+            <img src="https://account.xiaomi.com/static/res/349d9c1/account-static/respassport/acc-2014/img/milogo.png"
+                alt="">
+            <h2>注册小米账号</h2>
+        </div>
+        <div class="main-center">
+            <div class="password-con registered">
+                <form action="zhuce.php" method="post">
+                    <div class="psw">
+                        <p class="psw-p1">账号：</p>
+                        <input type="text" name="username" placeholder="请输入用户名" />
+                    </div>
+                    <div class="psw">
+                        <p class="psw-p1">密码：</p>
+                        <input type="password" name="password" placeholder="请输入密码" />
+                    </div>
+                    <div class="psw">
+                        <p class="psw-p1">确认：</p>
+                        <input type="password" name="repassword" placeholder="请再次输入密码" />
+                    </div>
+                    <input type="button" value="立即注册" class="psw-btn">
+                    <p class="sign-in">
+                        已有账号？请
+                        <a href="pages/login.html">登录</a>
+                    </p>
+                    <div class="agreement">
+                        <input type="checkbox" name="hobby" />
+                        <p>
+                            已阅读并同意：
+                            <span class="xieyi">小米 用户协议和 隐私政策</span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $('#login').validate({
+            rules: {
+                username: {
+                    required: true,
+                },
+                password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 12,
+                }
+            },
+            messages: {
+                firstname: "请输入你的账号",
+                lastname: "请输入你的密码",
+                username: {
+                    required: "请输入你的账号"
+                },
+                password: {
+                    required: "请输入密码！",
+                }
+            },
+            submitHandler: function (form) {
+                $.ajax({
+                    url: '/zhuce',
+                    type: 'post',
+                    data: {
+                        username: 'admin',
+                        password: '123456'
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        console.log(res)
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
